@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
@@ -60,7 +61,9 @@ public class AuthManager : MonoBehaviour
             if (www.downloadHandler.text[0] == '0')
             {
                 DBManager.username = phoneNumberInput.text;
-                Debug.Log(www.downloadHandler.text); ;
+                Debug.Log(www.downloadHandler.text);
+                SceneManager.LoadScene("MainApp");
+                
             }
             else
             {
