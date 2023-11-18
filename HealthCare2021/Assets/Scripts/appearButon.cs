@@ -16,18 +16,17 @@ public class appearButon : MonoBehaviour
 
     public void apareButon()
     {
-        createButton();
+        if(buttonMain.active == false)
+        {
+            buttonMain.SetActive(true);
+        }
+        else
+            createButton();
     }
     void createButton()
     {
         for (int i = 0; i < tasks.Length; i++)
         {
-            if (i == 0)
-            {
-                buttonMain.SetActive(true);
-            }
-            if (i != 0)
-            {
                 GameObject newButton = Instantiate(buttonPrefab, buttonContainer);
                 RectTransform newButtonRectTransform = newButton.GetComponent<RectTransform>();
 
@@ -39,8 +38,7 @@ public class appearButon : MonoBehaviour
                 Text buttonText = newButton.GetComponentInChildren<Text>();
 
                 buttonText.text = tasks[i];
-            }
         }
     }
-
 }
+
