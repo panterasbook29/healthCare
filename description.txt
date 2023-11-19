@@ -1,0 +1,11 @@
+MedConnect Hub is supposed to be the new tehnological bridge between clinics, doctors and patients. 
+The patients would be able to connect directly to the clinic and their doctors, accesing all the info from the consultation and being notified when
+to take their pills, also informing them about what could happen if they didnt. Another fucntionality of MedConnect Hub is helping keep track and motivation
+throughout the user's journey of quitting the habit to smoke. How it works, you tell the app that you want to quit, specify information about how many
+packets of cigarettes you smoke every week and the app keeps track of your progress, reminding you of all things that could and do happen if you quit smoking.
+Going back to the connection between the patient and the clinic/doctors, after the consultation, the patient would be shown the app, clinic code and the
+doctor's ID to whom they went, afterwards, the doctor would be able to leave notes and tell the app what pills the patient should take. The patient would then
+be able to tell the app that they had taken the pill, after they had been notified, which will eliminate completely the problem of forgetting to take your
+pills and also would eliminate the inexsitence of trust between the normal human and the prescription, everything being monitorised by the doctors and the app
+alike.
+We are using Unity(as the engine), C#(for the unity scripts), PHP(for the scripts of the link between the database and unity) and SQL(for the database).
