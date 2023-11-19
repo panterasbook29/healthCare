@@ -78,7 +78,7 @@ public class AuthManager : MonoBehaviour
 
     public void VerifyInputs()
     {
-        submitButtonRegister.interactable = (phoneNumberInput.text.Length >= 8 && passwordInput.text.Length >= 4) ;
-        submitButtonLogin.interactable = (phoneNumberInput.text.Length >= 8 && passwordInput.text.Length >= 4);
+         submitButtonRegister.interactable = (phoneNumberInput.text.Length >= 8 && passwordInput.text.Length >= 4) ;
+         submitButtonLogin.interactable = (phoneNumberInput.text.Length >= 8 && passwordInput.text.Length >= 4);
     }
 }

@@ -10,8 +10,6 @@ public class notification : MonoBehaviour
 {
     [SerializeField]
     public int timer = 5;
-
-    public Button buton;
     public void RequestAuth()
     {
         if (!Permission.HasUserAuthorizedPermission("android.permission.POST_NOTIFICATIONS"))
@@ -35,26 +33,44 @@ public class notification : MonoBehaviour
 
 
     }
-    public void sendNotif()
+    public void sendNotif1()
     {
-        Debug.Log("alex e prost");
         var notification = new AndroidNotification();
-        notification.Title = "mergi";
-        notification.Text = "coaie";
-        notification.FireTime = System.DateTime.Now.AddSeconds(10);
+        notification.Title = "Time for your pills";
+        notification.Text = "Metformin";
+        notification.FireTime = System.DateTime.Now;
 
         var id = AndroidNotificationCenter.SendNotification(notification, "channel_id");
 
-        if (AndroidNotificationCenter.CheckScheduledNotificationStatus(id) == NotificationStatus.Scheduled)
-        {
-            AndroidNotificationCenter.CancelAllNotifications();
-            AndroidNotificationCenter.SendNotification(notification, "channel_id");
-        }
-        Invoke("interactible", 1);
     }
-    public void interactible()
+    public void sendNotif2()
     {
-        buton.interactable = false;
-    }
+        var notification = new AndroidNotification();
+        notification.Title = "Time for your pills";
+        notification.Text = "Estrovit Hydro Out";
+        notification.FireTime = System.DateTime.Now;
 
+        var id = AndroidNotificationCenter.SendNotification(notification, "channel_id");
+
+    }
+    public void sendNotif3()
+    {
+        var notification = new AndroidNotification();
+        notification.Title = "Time for your pills";
+        notification.Text = "Evogen Super Dry";
+        notification.FireTime = System.DateTime.Now;
+
+        var id = AndroidNotificationCenter.SendNotification(notification, "channel_id");
+
+    }
+    public void sendNotifFumat()
+    {
+        var notification = new AndroidNotification();
+        notification.Title = "Smoke";
+        notification.Text = "Did you smoke yersterday?";
+        notification.FireTime = System.DateTime.Now;
+
+        var id = AndroidNotificationCenter.SendNotification(notification, "channel_id");
+
+    }
 }
