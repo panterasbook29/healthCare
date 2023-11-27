@@ -25,7 +25,7 @@ public class AuthManager : MonoBehaviour
         form.AddField("phoneNumber", phoneNumberInput.text);
         form.AddField("password", passwordInput.text);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/register.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/register.php", form))
         {
             yield return www.SendWebRequest();
 
@@ -52,7 +52,7 @@ public class AuthManager : MonoBehaviour
         form.AddField("phoneNumber", phoneNumberInput.text);
         form.AddField("password", passwordInput.text);
 
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/login.php", form);
+        UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/login.php", form);
 
         yield return www.SendWebRequest();
 

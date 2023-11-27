@@ -23,8 +23,8 @@ public class DoctorClinicConnect : MonoBehaviour
 {
     public TMP_InputField doctorCodeInput;
     public TMP_InputField clinicCodeInput;
-    private string doctorScriptURL = "http://localhost/sqlconnect/doctors.php";
-    private string clinicScriptURL = "http://localhost/sqlconnect/clinics.php";
+    private string doctorScriptURL = "http://www.panterasbook.space/sqlconnect/doctors.php";
+    private string clinicScriptURL = "http://www.panterasbook.space/sqlconnect/clinics.php";
 
     private bool hasClinic = false;
     private string currentClinic = "";

@@ -8,7 +8,7 @@ public class WebTest : MonoBehaviour
 
     IEnumerator Start()
     {
-        UnityWebRequest request = UnityWebRequest.Get("http://localhost/sqlconnect/webtest.php");
+        UnityWebRequest request = UnityWebRequest.Get("http://www.panterasbook.space/sqlconnect/webtest.php");
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
