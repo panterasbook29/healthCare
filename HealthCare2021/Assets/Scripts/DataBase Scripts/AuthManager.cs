@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
+    public static string globalPhoneNumber;
+
+
     public TMP_InputField phoneNumberInput;
     public TMP_InputField passwordInput;
 
@@ -25,7 +28,7 @@ public class AuthManager : MonoBehaviour
         form.AddField("phoneNumber", phoneNumberInput.text);
         form.AddField("password", passwordInput.text);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/register.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/registerPatient.php", form))
         {
             yield return www.SendWebRequest();
 
@@ -43,16 +46,16 @@ public class AuthManager : MonoBehaviour
 
     public void CallLogin()
     {
-       StartCoroutine(Login());
+       StartCoroutine(LoginPatient());
     }
 
-    IEnumerator Login()
+    IEnumerator LoginPatient()
     {
         WWWForm form = new WWWForm();
         form.AddField("phoneNumber", phoneNumberInput.text);
         form.AddField("password", passwordInput.text);
 
-        UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/login.php", form);
+        UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/loginPatient.php", form);
 
         yield return www.SendWebRequest();
 
@@ -62,7 +65,8 @@ public class AuthManager : MonoBehaviour
             {
                 DBManager.username = phoneNumberInput.text;
                 Debug.Log(www.downloadHandler.text);
-                SceneManager.LoadScene("MainApp");
+                globalPhoneNumber = phoneNumberInput.text;
+                SceneManager.LoadScene("PatientMainApp");
                 
             }
             else
@@ -75,6 +79,13 @@ public class AuthManager : MonoBehaviour
             Debug.LogError("Error: " + www.error);
         }
     }
+
+    public void CallLogout()
+    {
+        globalPhoneNumber = "";
+        SceneManager.LoadScene("MainMenuPatient");
+    }
+
 
     public void VerifyInputs()
     {
