@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuDoctor.unity
     guid: 448bd6786edfb2e42864c2abb6058d0a
+  - enabled: 1
+    path: Assets/Scenes/DoctorMainApp.unity
+    guid: a15ce8b8fc2c37c44bab8fe21f0c7c32
   m_configObjects: {}

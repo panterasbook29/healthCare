@@ -10,21 +10,24 @@ using UnityEngine.SceneManagement;
 public class UserInfo
 {
     public string name;
+    public string patientID;
 }
 
 public class AccountManager : MonoBehaviour
 {
+    public static string globalPatientID;
 
     public TMP_InputField nameInput;
     public TMP_InputField passwordInput;
-    public TMP_Text nameTXT;
+    public TMP_Text name_TXT;
+    public TMP_Text patientID_TXT;
 
     private void Start()
     {
-        StartCoroutine(GetUserName());
+        StartCoroutine(GetUserInfo());
     }
 
-    IEnumerator GetUserName()
+    IEnumerator GetUserInfo()
     {
         WWWForm form = new WWWForm();
         form.AddField("phoneNumber", AuthManager.globalPhoneNumber);
@@ -52,13 +55,16 @@ public class AccountManager : MonoBehaviour
                 // Process the JSON data as needed
                 UserInfo userInfo = JsonUtility.FromJson<UserInfo>(jsonData);
 
-                // Now 'userInfo' contains information about the user, including the name
-                // Debug.Log($"User Name: {userInfo.name}");
-                nameTXT.text = "Current Name: " + userInfo.name;
-                // Use the userInfo.name variable in your Unity application
+                // Now 'userInfo' contains information about the user, including the name and patientID
+                name_TXT.text = "Name: " + userInfo.name;
+                patientID_TXT.text = "Patient ID: " + userInfo.patientID;
+                globalPatientID = userInfo.patientID;
+                // Use the userInfo.name and userInfo.patientID variables in your Unity application
             }
         }
     }
+
+
 
 
     public void CallChangeName()
@@ -79,7 +85,7 @@ public class AccountManager : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log("Server response: " + www.downloadHandler.text);
-                StartCoroutine(GetUserName());
+                StartCoroutine(GetUserInfo());
             }
             else
             {
@@ -97,7 +103,8 @@ public class AccountManager : MonoBehaviour
     IEnumerator ChangePassword()
     {
         WWWForm form = new WWWForm();
-        form.AddField("name", nameInput.text);
+        form.AddField("password", passwordInput.text);
+        form.AddField("phoneNumber", AuthManager.globalPhoneNumber);
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/passwordChange.php", form))
         {

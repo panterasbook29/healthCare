@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class AuthManagerDoctors : MonoBehaviour
 {
+    public static string globalDoctorCNP;
+
     public TMP_InputField cnpInput;
     public TMP_InputField passwordInput;
 
@@ -43,10 +45,10 @@ public class AuthManagerDoctors : MonoBehaviour
 
     public void CallLogin()
     {
-        StartCoroutine(LoginPatient());
+        StartCoroutine(LoginDoctor());
     }
 
-    IEnumerator LoginPatient()
+    IEnumerator LoginDoctor()
     {
         WWWForm form = new WWWForm();
         form.AddField("cnp", cnpInput.text);
@@ -60,9 +62,10 @@ public class AuthManagerDoctors : MonoBehaviour
         {
             if (www.downloadHandler.text[0] == '0')
             {
+                AuthManagerDoctors.globalDoctorCNP = cnpInput.text; // Set globalDoctorCNP here
                 DBManager.username = cnpInput.text;
                 Debug.Log(www.downloadHandler.text);
-                SceneManager.LoadScene("MainApp");
+                SceneManager.LoadScene("DoctorMainApp");
 
             }
             else
@@ -78,7 +81,7 @@ public class AuthManagerDoctors : MonoBehaviour
 
     public void VerifyInputs()
     {
-        submitButtonRegister.interactable = (cnpInput.text.Length >= 8 && passwordInput.text.Length >= 4);
-        submitButtonLogin.interactable = (cnpInput.text.Length >= 8 && passwordInput.text.Length >= 4);
+        submitButtonRegister.interactable = (cnpInput.text.Length >= 6 && passwordInput.text.Length >= 4);
+        submitButtonLogin.interactable = (cnpInput.text.Length >= 6 && passwordInput.text.Length >= 4);
     }
 }

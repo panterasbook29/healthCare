@@ -134,6 +134,7 @@ public class DoctorClinicConnect : MonoBehaviour
                     Debug.Log($"{doctor.clinic}");
                     if (($"{doctor.clinic}") == currentClinic)
                     {
+                        StartCoroutine(AddConnection());
                         addDoctor(doctor.name, doctor.specialty);
                     }
                 }
@@ -179,4 +180,36 @@ public class DoctorClinicConnect : MonoBehaviour
         specialty1 = "";
         specialty2 = "";
     }
+
+    IEnumerator AddConnection()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("doctor_id", doctorCodeInput.text);
+        form.AddField("patient_id", AccountManager.globalPatientID);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/connections.php", form);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            if (www.downloadHandler.text[0] == '0')
+            {
+                Debug.Log(www.downloadHandler.text);
+                // success
+
+
+
+            }
+            else
+            {
+                Debug.Log("User Login failed with error #" + www.downloadHandler.text);
+            }
+        }
+        else
+        {
+            Debug.LogError("Error: " + www.error);
+        }
+    }
+
 }
