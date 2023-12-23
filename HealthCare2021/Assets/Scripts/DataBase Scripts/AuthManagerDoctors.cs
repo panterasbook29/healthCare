@@ -79,6 +79,12 @@ public class AuthManagerDoctors : MonoBehaviour
         }
     }
 
+    public void CallLogout()
+    {
+        SceneManager.LoadScene("MainMenuDoctor");
+    }
+
+
     public void VerifyInputs()
     {
         submitButtonRegister.interactable = (cnpInput.text.Length >= 6 && passwordInput.text.Length >= 4);

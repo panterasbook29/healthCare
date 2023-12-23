@@ -19,6 +19,7 @@ public class AccountManager : MonoBehaviour
 
     public TMP_InputField nameInput;
     public TMP_InputField passwordInput;
+    public TMP_InputField notesInput;
     public TMP_Text name_TXT;
     public TMP_Text patientID_TXT;
 
@@ -107,6 +108,33 @@ public class AccountManager : MonoBehaviour
         form.AddField("phoneNumber", AuthManager.globalPhoneNumber);
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/passwordChange.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Server response: " + www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log("User creation failed with error: " + www.error);
+            }
+        }
+    }
+
+
+    public void CallChangeNotes()
+    {
+        StartCoroutine(ChangeNotes());
+    }
+
+    IEnumerator ChangeNotes()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("notes", notesInput.text);
+        form.AddField("phoneNumber", AuthManager.globalPhoneNumber);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://www.panterasbook.space/sqlconnect/notesChange.php", form))
         {
             yield return www.SendWebRequest();
 
